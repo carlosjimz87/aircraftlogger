@@ -5,10 +5,11 @@ from app.models import Aircraft, Flight
 class AircraftSerializer(serializers.ModelSerializer):
     class Meta:
         model = Aircraft
-        exclude = ['id']
+        fields = '__all__'
+
 
 class FlightSerializer(serializers.ModelSerializer):
-    aircraft = AircraftSerializer()
+    aircraft = AircraftSerializer(read_only=True)
 
     class Meta:
         model = Flight
