@@ -15,6 +15,9 @@ class Aircraft(models.Model):
     class Meta:
         ordering = ['manufacturer']
 
+    def __str__(self):
+        return 'Aircraft({},{})'.format(self.serial_number, self.manufacturer)
+
 
 class Flight(models.Model):
     departure = models.CharField(choices=get_airport_codes(), max_length=4)
@@ -22,7 +25,10 @@ class Flight(models.Model):
     departure_time = models.DateTimeField()
     arrival_time = models.DateTimeField()
     aircraft = models.ForeignKey(
-        Aircraft, related_name='flights', on_delete=models.CASCADE)
+        Aircraft, related_name='flights', on_delete=models.CASCADE, null=True)
 
     class Meta:
         ordering = ['departure_time', 'arrival_time']
+
+    def __str__(self):
+        return 'Flight({},{},{})'.format(self.departure, self.arrival, self.aircraft)

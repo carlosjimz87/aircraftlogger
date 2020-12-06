@@ -2,13 +2,13 @@
 
 ## TODO - MUST HAVE
 
-- [ ] Airport -> {code:String}
-- [ ] Aircraft -> { serialnumber:String, manufacturer: String}
-- [ ] Flights -> {departure:Airport, arrival: Airport, departureTime: Time, arrivalTime: Time, aircraft: Aircraft}
+- [x] Airport -> {code:String}
+- [x] Aircraft -> { serialnumber:String, manufacturer: String}
+- [x] Flights -> {departure:Airport, arrival: Airport, departureTime: Time, arrivalTime: Time, aircraft: Aircraft}
 - [ ] CRUD for aircrafts
 - [ ] CRUD for flights
 - [ ] CRUD for airports (optional)
-- [ ] Allow assignation of aircrafts to flights at creation time and later.
+- [x] Allow assignation of aircrafts to flights at creation time and later.
 - [ ] Flights departure date > creation date???
 - [ ] Flights search by departure and arrival airports.
 - [ ] Flights search by departure time range.
