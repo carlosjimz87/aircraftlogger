@@ -28,8 +28,8 @@ class TestViews(BaseTest):
         print(res.data)
         self.assertEquals(res.status_code, 201)
 
-    # def test_flight_list_post(self):
-    #     res = self.client.post(self.urls.get(
-    #         "flight_list"), self.flight_post_data)
-    #     print(res.data)
-    #     self.assertEquals(res.status_code, 201)
+    def test_flight_list_post(self):
+        res = self.client.post(self.urls.get(
+            "flight_list"), self.flight_post_data)
+        print(res.data)
+        self.assertEquals(res.status_code, 201)

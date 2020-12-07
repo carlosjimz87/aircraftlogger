@@ -72,8 +72,8 @@ class BaseTest(TestCase):
         self.flight_post_data = dict(
             departure="UKFF",
             arrival="UKOO",
-            departure_time=now(),
-            arrival_time=now()+timedelta(hours=3),
-            aircraft=self.aircraft_post_data
+            departure_time="2020-12-21T23:03:00Z",
+            arrival_time="2020-12-22T23:03:00Z",
+            aircraft=self.aircraft_defaults[0]["serial_number"]
         )
         # endregion

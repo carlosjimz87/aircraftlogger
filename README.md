@@ -9,7 +9,8 @@
 - [x] CRUD for flights
 - [ ] CRUD for airports (optional)
 - [x] Allow assignation of aircrafts to flights at creation time and later.
-- [x] Flights departure date > creation date???
+- [x] Flights departure date > creation date
+- [ ] Flights arrival date > departure date
 - [ ] Flights search by departure and arrival airports.
 - [ ] Flights search by departure time range.
 
