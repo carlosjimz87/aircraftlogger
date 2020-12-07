@@ -1,3 +1,4 @@
+from app.serializers import WriteFlightSerializer
 from . import *
 
 
@@ -13,7 +14,7 @@ class Serializers(BaseTest):
     def test_flight_serializer(self):
         flights = Flight.objects.all()
 
-        flight_serialized = FlightSerializer(flights, many=True)
+        flight_serialized = ReadFlightSerializer(flights, many=True)
 
         for pair in zip(self.flight_defaults, flight_serialized.data):
             self.assertEqual(pair[0]["departure"], pair[1]["departure"])

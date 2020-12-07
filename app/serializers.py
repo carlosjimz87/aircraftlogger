@@ -8,9 +8,24 @@ class AircraftSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class FlightSerializer(serializers.ModelSerializer):
+class ReadFlightSerializer(serializers.ModelSerializer):
     aircraft = AircraftSerializer(read_only=True)
 
     class Meta:
         model = Flight
         exclude = ['id']
+
+    def create(self, validated_data):
+        print("RVD:", validated_data)
+        return super().create(validated_data)
+
+
+class WriteFlightSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Flight
+        exclude = ['id']
+
+    def create(self, validated_data):
+        print("WVD:", validated_data)
+        return super().create(validated_data)
