@@ -11,8 +11,8 @@
 - [x] Allow assignation of aircrafts to flights at creation time and later.
 - [x] Flights departure date > creation date
 - [x] Flights arrival date > departure date
-- [ ] Flights search by departure and arrival airports.
-- [ ] Flights search by departure time range.
+- [x] Flights search by departure and arrival airports.
+- [x] Flights search by departure time range.
 
 ## TODO - NICE TO HAVE
 
