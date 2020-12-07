@@ -41,8 +41,7 @@ class Flight(models.Model):
     arrival = models.ForeignKey(
         Airport, related_name='flights_arrival', on_delete=models.CASCADE)
 
-    departure_time = models.DateTimeField(
-        validators=[departure_time_validator])
+    departure_time = models.DateTimeField()
     arrival_time = models.DateTimeField()
     aircraft = models.ForeignKey(
         Aircraft, related_name='flights', on_delete=models.CASCADE, null=True)
@@ -53,7 +52,3 @@ class Flight(models.Model):
 
     def __str__(self):
         return 'Flight({},{},{})'.format(self.departure, self.arrival, self.aircraft)
-
-    def clean(self) -> None:
-        arrival_time_validator(self)
-        return super().clean()

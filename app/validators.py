@@ -1,14 +1,13 @@
 from django.utils.timezone import now
-from django.core.exceptions import ValidationError
+from rest_framework.serializers import ValidationError
 
 
-def departure_time_validator(value):
-    if value < now():
+def departure_time_validator(fields):
+    if fields['departure_time'] < now():
+        raise ValidationError({"departure_time": "must be a future datetime"})
+
+
+def arrival_time_validator(fields):
+    if fields["arrival_time"] < fields["departure_time"]:
         raise ValidationError(
-            '%(value) is an invalid date. Must be a future datetime.', params={'value': value})
-
-
-def arrival_time_validator(obj):
-    if obj.arrival_time < obj.departure_time:
-        raise ValidationError(
-            '%(value) is an invalid date. Must be after the departure.', params={'value': obj.arrival})
+            {"arrival_time": "must be a after departure time"})
