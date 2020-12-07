@@ -6,3 +6,9 @@ def departure_time_validator(value):
     if value < now():
         raise ValidationError(
             '%(value) is an invalid date. Must be a future datetime.', params={'value': value})
+
+
+def arrival_time_validator(obj):
+    if obj.arrival < obj.departure:
+        raise ValidationError(
+            '%(value) is an invalid date. Must be after the departure.', params={'value': obj.arrival})

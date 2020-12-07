@@ -1,7 +1,8 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.fields import CharField
 from django.conf import settings
-from app.validators import departure_time_validator
+from app.validators import departure_time_validator, arrival_time_validator
 
 
 def get_airport_codes():
@@ -36,3 +37,7 @@ class Flight(models.Model):
 
     def __str__(self):
         return 'Flight({},{},{})'.format(self.departure, self.arrival, self.aircraft)
+
+    def clean(self) -> None:
+        arrival_time_validator(self)
+        return super().clean()
