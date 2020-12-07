@@ -7,7 +7,7 @@
 - [x] Flights -> {departure:Airport, arrival: Airport, departureTime: Time, arrivalTime: Time, aircraft: Aircraft}
 - [x] CRUD for aircrafts
 - [x] CRUD for flights
-- [ ] CRUD for airports (optional)
+- [x] CRUD for airports (optional)
 - [x] Allow assignation of aircrafts to flights at creation time and later.
 - [x] Flights departure date > creation date
 - [x] Flights arrival date > departure date
