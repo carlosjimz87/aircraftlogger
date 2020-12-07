@@ -46,12 +46,19 @@ class BaseTest(TestCase):
         # endregion
 
         # region Validators
-        self.invalidFlightData = dict(departure="SUMU",
-                                      arrival="SVBC",
-                                      departure_time=now()-timedelta(hours=1),   # this time should raise an error
-                                      arrival_time=now()+timedelta(hours=3),
-                                      aircraft=Aircraft.objects.first()
-                                      )
+        self.invalidDepartureTimeData = dict(departure="SUMU",
+                                             arrival="SVBC",
+                                             departure_time=now()-timedelta(hours=1),   # this time should raise an error
+                                             arrival_time=now()+timedelta(hours=3),
+                                             aircraft=Aircraft.objects.first()
+                                             )
+
+        self.invalidArrivalTimeData = dict(departure="SUMU",
+                                           arrival="SVBC",
+                                           departure_time=now(),   # this time should raise an error
+                                           arrival_time=now()-timedelta(hours=3),
+                                           aircraft=Aircraft.objects.first()
+                                           )
 
         # endregion
 

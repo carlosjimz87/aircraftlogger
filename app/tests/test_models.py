@@ -22,5 +22,9 @@ class Models(BaseTest):
             self.assertEqual(pair[0]["aircraft"], pair[1].aircraft)
 
     def test_invalid_departure_time(self):
-        flight = Flight(**self.invalidFlightData)
+        flight = Flight(**self.invalidDepartureTimeData)
+        self.assertRaises(ValidationError, flight.full_clean)
+
+    def test_invalid_arrival_time(self):
+        flight = Flight(**self.invalidArrivalTimeData)
         self.assertRaises(ValidationError, flight.full_clean)
