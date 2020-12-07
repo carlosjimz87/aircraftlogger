@@ -15,7 +15,7 @@ def filter_data(df):
     df = df.dropna()
     df = df[(df.type == "large_airport")]
     df = df[(df.ident.str.len() == 4)]
-    df = df[["ident", "name", "municipality"]]
+    df = df[["ident", "municipality", "name"]]
     return df
 
 
