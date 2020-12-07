@@ -10,6 +10,19 @@ def get_airport_codes():
         return [[line, line] for line in f.read().splitlines()]
 
 
+class Airport(models.Model):
+    icao_code = models.CharField(max_length=4, primary_key=True)
+    city = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
+    #
+    # class Meta:
+    #     ordering = ['icao_code']
+    #     verbose_name_plural = "Airports"
+
+    def __str__(self):
+        return 'Airport({},{},{})'.format(self.icao_code, self.city, self.name)
+
+
 class Aircraft(models.Model):
     serial_number = models.CharField(max_length=6, primary_key=True)
     manufacturer = models.CharField(max_length=20)
@@ -23,8 +36,11 @@ class Aircraft(models.Model):
 
 
 class Flight(models.Model):
-    departure = models.CharField(choices=get_airport_codes(), max_length=4)
-    arrival = models.CharField(choices=get_airport_codes(), max_length=4)
+    departure = models.ForeignKey(
+        Airport, related_name='flights_departure', on_delete=models.CASCADE)
+    arrival = models.ForeignKey(
+        Airport, related_name='flights_arrival', on_delete=models.CASCADE)
+
     departure_time = models.DateTimeField(
         validators=[departure_time_validator])
     arrival_time = models.DateTimeField()

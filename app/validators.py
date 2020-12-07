@@ -9,6 +9,6 @@ def departure_time_validator(value):
 
 
 def arrival_time_validator(obj):
-    if obj.arrival < obj.departure:
+    if obj.arrival_time < obj.departure_time:
         raise ValidationError(
             '%(value) is an invalid date. Must be after the departure.', params={'value': obj.arrival})

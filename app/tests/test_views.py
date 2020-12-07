@@ -13,8 +13,10 @@ class TestViews(BaseTest):
         self.assertEquals(res.status_code, 200)
 
         for pair in zip(self.flight_defaults, res.data):
-            self.assertEqual(pair[0]["departure"], pair[1]["departure"])
-            self.assertEqual(pair[0]["arrival"], pair[1]["arrival"])
+            self.assertEqual(pair[0]["departure"].icao_code,
+                             pair[1]["departure"]["icao_code"])
+            self.assertEqual(pair[0]["arrival"].icao_code,
+                             pair[1]["arrival"]["icao_code"])
 
             # testing nested aircrafts fields
             self.assertEqual(pair[0]["aircraft"].serial_number,

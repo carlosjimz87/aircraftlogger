@@ -16,11 +16,12 @@ class Serializers(BaseTest):
         flight_serialized = FlightSerializer(flights, many=True)
 
         for pair in zip(self.flight_defaults, flight_serialized.data):
-            self.assertEqual(pair[0]["departure"], pair[1]["departure"])
-            self.assertEqual(pair[0]["arrival"], pair[1]["arrival"])
+            self.assertEqual(pair[0]["departure"].icao_code,
+                             pair[1]["departure"])
+            self.assertEqual(pair[0]["arrival"].icao_code,
+                             pair[1]["arrival"])
 
             # testing nested aircrafts fields
             self.assertEqual(pair[0]["aircraft"].serial_number,
-                             pair[1]["aircraft"]["serial_number"])
-            self.assertEqual(pair[0]["aircraft"].manufacturer,
-                             pair[1]["aircraft"]["manufacturer"])
+                             pair[1]["aircraft"])
+
