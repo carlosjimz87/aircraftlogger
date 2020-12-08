@@ -16,7 +16,7 @@
 
 ## TODO - NICE TO HAVE
 
-- [ ] Get all departure airports by time (departure and arrival interval as required, provided as request param)... and for each airport the number of flights and in-flight times for each aircraft (this range time strictly within the time range of the search and the average in minutes).
+- [/] Get all departure airports by time (departure and arrival interval as required, provided as request param)... and for each airport the number of flights and in-flight times for each aircraft (this range time strictly within the time range of the search and the average in minutes).
 
 ## TODO - TECH SETUP
 
