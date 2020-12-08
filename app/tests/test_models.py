@@ -12,7 +12,7 @@ class Models(BaseTest):
 
     def test_flights(self):
         flights = Flight.objects.all()
-        self.assertEqual(len(flights), 3)
+        self.assertEqual(len(flights), len(self.flight_defaults))
 
         for pair in zip(self.flight_defaults, flights):
             self.assertEqual(pair[0]["departure"], pair[1].departure)

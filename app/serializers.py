@@ -30,3 +30,11 @@ class ReadFlightSerializer(FlightSerializer):
     aircraft = AircraftSerializer()
     departure = AirportSerializer()
     arrival = AirportSerializer()
+
+
+class ReportSerializer(serializers.Serializer):
+    icao_code = serializers.CharField(max_length=4)
+    city = serializers.CharField(max_length=50)
+    name = serializers.CharField(max_length=100)
+    inflight_avg = serializers.FloatField()
+    flight_count = serializers.IntegerField()

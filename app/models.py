@@ -14,10 +14,6 @@ class Airport(models.Model):
     icao_code = models.CharField(max_length=4, primary_key=True)
     city = models.CharField(max_length=50)
     name = models.CharField(max_length=100)
-    #
-    # class Meta:
-    #     ordering = ['icao_code']
-    #     verbose_name_plural = "Airports"
 
     def __str__(self):
         return 'Airport({},{},{})'.format(self.icao_code, self.city, self.name)
@@ -28,7 +24,6 @@ class Aircraft(models.Model):
     manufacturer = models.CharField(max_length=20)
 
     class Meta:
-        ordering = ['manufacturer']
         verbose_name_plural = "Aircrafts"
 
     def __str__(self):
@@ -45,10 +40,14 @@ class Flight(models.Model):
     arrival_time = models.DateTimeField()
     aircraft = models.ForeignKey(
         Aircraft, related_name='flights', on_delete=models.CASCADE, null=True)
+    inflight_time=models.IntegerField(null=True)
 
     class Meta:
-        ordering = ['departure_time', 'arrival_time']
         verbose_name_plural = "Flights"
 
     def __str__(self):
         return 'Flight({},{},{})'.format(self.departure, self.arrival, self.aircraft)
+
+    def save(self, *args, **kwargs):
+        self.inflight_time = round((self.arrival_time-self.departure_time).seconds/60)
+        return super(Flight, self).save(*args, **kwargs)

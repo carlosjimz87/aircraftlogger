@@ -9,3 +9,4 @@ class FlightFilter(filters.FilterSet):
     class Meta:
         model = Flight
         fields = ['arrival', 'departure', 'departure_time_from', 'arrival_time_to']
+
