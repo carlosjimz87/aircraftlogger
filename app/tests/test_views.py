@@ -36,4 +36,13 @@ class TestViews(BaseTest):
 
     def test_report_view(self):
         res = self.client.get(self.urls.get("report_list"),)
+        self.assertEquals(len(res.data), 5)
         self.assertEquals(res.status_code, 200)
+
+    def test_report_view_with_daterange_for_two_last_flights(self):
+        res = self.client.get(self.urls.get("report_list"), self.range_for_report_for_two_last_flights)
+        self.assertEquals(res.status_code, 200)
+        self.assertEquals(res.data[0]["flight_count"], 2)
+        self.assertEquals(res.data[0]["inflight_avg"], 600.0)
+
+

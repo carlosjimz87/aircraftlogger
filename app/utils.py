@@ -11,6 +11,10 @@ SOURCE_PATH = settings.MEDIA_ROOT / SOURCE_FILE
 
 
 def filter_data(df):
+    """
+    Filter data of :model:`app.Airport`s from CSV datasource using pandas.
+    Only `large_airports` with `ident` (icao_code), `municipality` (city) and `name` are selected.
+    """
     df = df[["ident", "type", "name", "municipality"]]
     df = df.dropna()
     df = df[(df.type == "large_airport")]
@@ -20,6 +24,10 @@ def filter_data(df):
 
 
 def get_airports(columns, reload):
+    """
+    Retrieve data of :model:`app.Airport`s from CSV datasource using pandas.
+    File is saved in :media: folder for cache.
+    """
     if reload or not exists(SOURCE_PATH):
         df = pd.read_csv(SOURCE_URL)
         df.to_csv(SOURCE_PATH)
@@ -32,6 +40,9 @@ def get_airports(columns, reload):
 
 
 def populate_airports(limit=None, reload=False):
+    """
+    Populate :model:`app.Airport`s from the datasource into the database.
+    """
     Airport.objects.all().delete()
     cols = [field.name for field in Airport._meta.fields]
     airports_data = get_airports(cols, reload)[:limit]
@@ -43,6 +54,9 @@ def populate_airports(limit=None, reload=False):
 
 
 def populate_aircrafts():
+    """
+    Populate dummy :model:`app.Aircraft`s from the datasource into the database.
+    """
     Aircraft.objects.all().delete()
     aircraft_defaults = [
         dict(serial_number="AA5435", manufacturer="Airbus"),
@@ -51,10 +65,12 @@ def populate_aircrafts():
     ]
     return (aircraft_defaults, [Aircraft.objects.create(
         **aircraft) for aircraft in aircraft_defaults])
-    pass
 
 
 def populate_flights(airports, aircrafts):
+    """
+    Populate dummy :model:`app.Flight`s from the datasource into the database.
+    """
     Flight.objects.all().delete()
     flight_defaults = [
         dict(departure=airports[0],
@@ -84,7 +100,7 @@ def populate_flights(airports, aircrafts):
         dict(departure=airports[4],
              arrival=airports[5],
              departure_time=now() + timedelta(hours=1),
-             arrival_time=now() + timedelta(hours=8), # inflight_time = 7h
+             arrival_time=now() + timedelta(hours=8),  # inflight_time = 7h
              aircraft=aircrafts[2]
              ),
         dict(departure=airports[4],
@@ -121,5 +137,3 @@ def populate_flights(airports, aircrafts):
 
     return (flight_defaults, [Flight.objects.create(
         **flight) for flight in flight_defaults])
-
-    pass

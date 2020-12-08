@@ -58,4 +58,9 @@ class BaseTest(TestCase):
             arrival_time="2020-12-22T23:03:00Z",
             aircraft=aircrafts[0].serial_number
         )
+        self.range_for_report_for_two_last_flights = dict(
+            departure_time_from=now() + timedelta(days=3),
+            arrival_time_to=now() + timedelta(days=6),  # inflight_time = 8h
+        )
+
         # endregion
