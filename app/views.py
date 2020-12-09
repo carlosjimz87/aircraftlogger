@@ -44,13 +44,13 @@ class FlightViewSet(viewsets.ModelViewSet):
             return super(FlightViewSet, self).get_serializer_class()
 
 
-class ReportView(views.APIView):
+class ReportViewSet(viewsets.ViewSet):
     """
     Display a list of  :model:`app.Aiport`.
     with the number of  :model:`app.Flight` and the average in-time-flight for each one.
     """
 
-    def get(self, request, format=None):
+    def list(self, request, format=None):
         """
         Creates a special query to show in the report: 
 

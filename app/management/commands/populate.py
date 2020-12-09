@@ -21,4 +21,5 @@ class Command(BaseCommand):
                 f'Successfully created %d Flights.' % len(flights)))
 
         except Exception as err:
-            self.stdout.write(self.style.ERROR("Error populating database."))
+            self.stdout.write(self.style.ERROR(
+                "Error populating database."+err))

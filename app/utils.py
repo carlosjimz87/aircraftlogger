@@ -4,10 +4,12 @@ from app.models import Airport, Aircraft, Flight
 from os.path import exists
 from django.conf import settings
 from datetime import timedelta
+import os
 
 SOURCE_FILE = "airports.csv"
-SOURCE_URL = "https://ourairports.com/data/" + SOURCE_FILE
-SOURCE_PATH = settings.MEDIA_ROOT / SOURCE_FILE
+SOURCE_URL = os.path.join("https://ourairports.com/data/", SOURCE_FILE)
+SOURCE_PATH = os.path.join(settings.MEDIA_ROOT, SOURCE_FILE)
+ICAO_CODE_LENGTH = 4
 
 
 def filter_data(df):
@@ -18,7 +20,7 @@ def filter_data(df):
     df = df[["ident", "type", "name", "municipality"]]
     df = df.dropna()
     df = df[(df.type == "large_airport")]
-    df = df[(df.ident.str.len() == 4)]
+    df = df[(df.ident.str.len() == ICAO_CODE_LENGTH)]
     df = df[["ident", "municipality", "name"]]
     return df
 
@@ -29,6 +31,7 @@ def get_airports(columns, reload):
     File is saved in :media: folder for cache.
     """
     if reload or not exists(SOURCE_PATH):
+        os.mkdir(settings.MEDIA_ROOT)
         df = pd.read_csv(SOURCE_URL)
         df.to_csv(SOURCE_PATH)
     else:
@@ -105,7 +108,7 @@ def populate_flights(airports, aircrafts):
              ),
         dict(departure=airports[4],
              arrival=airports[6],
-             departure_time=now()+ timedelta(hours=2),
+             departure_time=now() + timedelta(hours=2),
              arrival_time=now() + timedelta(hours=4),  # inflight_time = 2h
              aircraft=aircrafts[2]
              ),
