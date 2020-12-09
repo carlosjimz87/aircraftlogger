@@ -16,15 +16,15 @@
 
 ## TODO - NICE TO HAVE
 
-- [/] Get all departure airports by time (departure and arrival interval as required, provided as request param)... and for each airport the number of flights and in-flight times for each aircraft (this range time strictly within the time range of the search and the average in minutes).
+- [x] Get all departure airports by time (departure and arrival interval as required, provided as request param)... and for each airport the number of flights and in-flight times for each aircraft (this range time strictly within the time range of the search and the average in minutes).
 
 ## TODO - TECH SETUP
 
-- Python 2.7 or higher.
-- Web framework of choice.
-- No UI needed
-- but a well documented README is a plus.
-- Unit tests
-- Code quality
-- Standard convention compliance
-- Push into a private github repo and allow access to supervisor.
+- [x] Python 2.7 or higher.
+- [x] Web framework of choice.
+- [x] No UI needed
+- [x] But a well documented README is a plus.
+- [x] Unit tests
+- [x] Code quality
+- [x] Standard convention compliance
+- [x] Push into a private github repo and allow access to supervisor.
