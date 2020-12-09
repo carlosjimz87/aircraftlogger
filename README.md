@@ -1,30 +1,32 @@
 # Aircraft Logger App
 
-## TODO - MUST HAVE
+![ [alt_image](url_image_shields_io) ](https://img.shields.io/badge/python-3.8.6-blue)
+![ [alt_image](url_image_shields_io) ](https://img.shields.io/badge/django-3.1.4-green)
+![ [alt_image](url_image_shields_io) ](https://img.shields.io/badge/django--rest--framework-3.12.2-red)
 
-- [x] Airport -> {code:String}
-- [x] Aircraft -> { serialnumber:String (PK), manufacturer: String}
-- [x] Flights -> {departure:Airport, arrival: Airport, departureTime: Time, arrivalTime: Time, aircraft: Aircraft}
-- [x] CRUD for aircrafts
-- [x] CRUD for flights
-- [x] CRUD for airports (optional)
-- [x] Allow assignation of aircrafts to flights at creation time and later.
-- [x] Flights departure date > creation date
-- [x] Flights arrival date > departure date
-- [x] Flights search by departure and arrival airports.
-- [x] Flights search by departure time range.
+This API allows registering data of flight, aircraft and airport easily.
+Is developed in DjangoRestFramework plus third-party libraries such as pandas, drf-yasg and django-filters.
 
-## TODO - NICE TO HAVE
+## Features
 
-- [x] Get all departure airports by time (departure and arrival interval as required, provided as request param)... and for each airport the number of flights and in-flight times for each aircraft (this range time strictly within the time range of the search and the average in minutes).
+- CRUD operations for those three entities by using the endpoints.
+- Filter flights by arrival and departure airports and datetime.
+- Report of flights (with in-time-flight average per flight) by airport and also filterable by datetime.
 
-## TODO - TECH SETUP
+## Installation
 
-- [x] Python 2.7 or higher.
-- [x] Web framework of choice.
-- [x] No UI needed
-- [x] But a well documented README is a plus.
-- [x] Unit tests
-- [x] Code quality
-- [x] Standard convention compliance
-- [x] Push into a private github repo and allow access to supervisor.
+- Clone this repo: `git clone git@github.com:carlosjimz87/aircraftlogger.git && cd aircraftlogger`
+- Activate a virtualenv: `virtualenv env && source env/bin/activate`
+- Install dependencies: `pip install -r requirements.txt`
+- Create database: `python manage.py migrate`
+
+## Testing
+
+- Run all tests: `python manage.py test`
+
+## Usage
+
+- Populate database with dummy data : `python manage.py populate`
+- Run server on local: `python manage.py runserver`
+- Open homepage in a browser at http://localhost:8000/
+- Open swagger in a browser at http://localhost:8000/swagger/
